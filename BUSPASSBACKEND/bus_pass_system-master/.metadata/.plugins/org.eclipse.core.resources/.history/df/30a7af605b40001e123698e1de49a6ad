@@ -1,0 +1,100 @@
+package com.example;
+
+import com.example.model.FAQ;
+import com.example.model.Route;
+import com.example.model.RouteDetails;
+import com.example.model.User;
+import com.example.service.AdminService;
+import com.example.service.RouteService;
+import com.example.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Optional;
+
+@Controller
+@RequestMapping("/Routecontrol")
+@CrossOrigin(origins = "http://localhost:3000")
+@ControllerAdvice
+public class RouteController
+{
+
+    @Autowired
+    RouteService routeService;
+
+    @Autowired
+    UserService userService;  
+
+
+    @PostMapping("/route")
+    public ResponseEntity addRoute(@RequestBody Route route, @RequestParam("userId") Long userId)
+    {
+        Optional<User> user = userService.isAdmin(userId);
+        if(user.isEmpty())
+        return new ResponseEntity<>("Invalid user", HttpStatus.BAD_REQUEST);
+        else
+            routeService.addRoute(route);
+
+         return new ResponseEntity<>("New Route added Successfully", HttpStatus.OK);
+    }
+
+
+    @PutMapping("/route")
+    public ResponseEntity updateFAQ(@RequestBody Route route,@RequestParam("userId") Long userId)
+    {
+        Optional<User> user = userService.isAdmin(userId);
+        if(user.isEmpty())
+            return new ResponseEntity<>("Invalid user", HttpStatus.BAD_REQUEST);
+        else
+            routeService.addRoute(route);
+
+        return new ResponseEntity<>("Route updated Successfully", HttpStatus.OK);
+    }
+    @GetMapping("/routes")
+    public ResponseEntity getAllRoutes()
+    {
+        List<Route> routes = routeService.getAllRoute();
+        if (routes.isEmpty())
+            return new ResponseEntity<>("Routes not found", HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(routes, HttpStatus.OK);
+    }
+
+
+    @PostMapping("{routeId}/routeDetails")
+    public ResponseEntity addRouteDetails(@RequestBody RouteDetails routeDetails, @RequestParam("userId") Long userId,@PathVariable("routeId") Integer routeId)
+    {
+        Optional<User> user = userService.isAdmin(userId);
+        if(user.isEmpty())
+            return new ResponseEntity<>("Invalid user", HttpStatus.BAD_REQUEST);
+        else
+            routeService.addRouteDetails(routeDetails,routeId);
+
+        return new ResponseEntity<>("New Route added Successfully", HttpStatus.OK);
+    }
+
+    @GetMapping("/routesDetails")
+    public ResponseEntity getAllRoutesDetails(@RequestParam("userId") Long userId)
+    {
+        List<RouteDetails> routes = routeService.getAllRouteDetails();
+        if (routes.isEmpty())
+            return new ResponseEntity<>("Routes not found", HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(routes, HttpStatus.OK);
+    }
+
+    @GetMapping("/routedetails")
+    public ResponseEntity<List<RouteDetails>> getStation()
+    {
+    	List<RouteDetails> route = routeService.getAllRouteDetails();
+    	return new ResponseEntity<List<RouteDetails>>(route, HttpStatus.OK);
+    }
+    
+    @PostMapping("/addroute")
+    public ResponseEntity addroute(@RequestParam("route") String route)
+    {
+    	return routeService.addRoute(route);
+    }
+}

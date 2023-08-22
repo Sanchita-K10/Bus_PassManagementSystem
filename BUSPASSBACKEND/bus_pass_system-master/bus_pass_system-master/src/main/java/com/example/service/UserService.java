@@ -1,0 +1,91 @@
+package com.example.service;
+
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.List;
+import java.util.Optional;
+
+import com.example.repository.UserRepository;
+
+import jakarta.transaction.Transactional;
+
+import com.example.model.User;
+import com.example.model.UserPass;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+
+@Service
+public class UserService
+{
+	@Autowired
+	private UserRepository userRepository;
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+	@Value("${spring.datasource.STUDENT}")
+	int studentDiscount;
+
+	@Value("${spring.datasource.SENIOR_CITIZEN}")
+	int  seniorCitizenDiscount;
+
+	public Optional<User> isvalid(String email, String password)
+	{
+		return userRepository.findByEmailAndPassword(email,password);
+	}
+
+	public Optional<User> isAdmin(Long userId)
+	{
+		return userRepository.findByUserIdAndRole(userId,"ADMIN");
+	}
+
+
+	public void saveUser(User userDto) {
+		User user = new User();
+		user.setFirstName(userDto.getFirstName());
+		user.setLastName(userDto.getLastName());
+		user.setGender(userDto.getGender());
+		user.setMobileNo(userDto.getMobileNo());
+		user.setEmail(userDto.getEmail());
+		user.setPassword(userDto.getPassword());
+		user.setAddress(userDto.getAddress());
+		user.setType(userDto.getType());
+		user.setRole("USER");
+		user.setDob(userDto.getDob());
+		user.setCreatedDate(Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+		user.setModifiedDate(Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+		userRepository.save(user);
+	}
+
+
+	public Optional<User> getUser(Long userId) {
+		return userRepository.findById(Math.toIntExact(userId));
+	}
+
+	public List<User> getAllUsersByRole(String role) {
+		return userRepository.findByRole(role);
+	}
+	
+	
+
+	public int getUserTypeDiscount(String userType) {
+		if(userType.equalsIgnoreCase("student"))
+		return Integer.valueOf(studentDiscount);
+		else if(userType.equalsIgnoreCase("Senior_Citizen"))
+			return Integer.valueOf(seniorCitizenDiscount);
+		else
+			return 0;
+	}
+	
+	@Transactional	
+	public int documentName(int userId, String filename)
+	{
+		return userRepository.documentName(userId, filename);
+	}
+	public List<User> getAllPending() {
+		// TODO Auto-generated method stub
+		return userRepository.getAllPending();
+	}
+}

@@ -1,0 +1,52 @@
+package com.example.service;
+
+import com.example.model.Route;
+import com.example.model.RouteDetails;
+import com.example.repository.RouteDetailsRepository;
+import com.example.repository.RouteRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+
+@Service
+public class RouteService {
+
+    @Autowired
+    RouteRepository routeRepository;
+    @Autowired
+    RouteDetailsRepository routeDetailsRepository;
+
+    public void addRoute(Route route) {
+        routeRepository.save(route);
+    }
+    public void addRouteDetails(RouteDetails routeDetails,Integer routeId) {
+        Optional<Route> route = routeRepository.findById(routeId);
+        if(route.isPresent()) {
+            routeDetails.setRoute(route.get());
+        }
+        routeDetailsRepository.save(routeDetails);
+    }
+
+    public Optional<Route> getRoute(Integer routeId) {
+        return routeRepository.findById(routeId);
+    }
+    public Optional<RouteDetails> getRouteDetails(Integer routeDetailId) {
+        return routeDetailsRepository.findById(routeDetailId);
+    }
+
+    public List<RouteDetails>  getRouteStations(Route route) {
+        return routeDetailsRepository.findAllByRoute(route);
+    }
+    public List<Route> getAllRoute() {
+        return routeRepository.findAll();
+    }
+
+    public List<RouteDetails> getAllRouteDetails(){
+        return routeDetailsRepository.findAll();
+    }
+    
+   
+
+}

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical"
+android:background="#C1F8F8"
+tools:context=".activities.ShowPassActivity">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:background="#088F8F"
+        android:src="@drawable/ic_login_bk"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"/>
+</LinearLayout>
+<TextView
+    android:text="Issued Pass"
+    android:textColor="@color/white"
+    android:textSize="24dp"
+    android:layout_gravity="center"
+    android:layout_marginTop="-120dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" />
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:background="@color/cardview_light_background"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"/>
+</LinearLayout>
+
+<ImageView
+    android:src="@color/cardview_shadow_end_color"
+    android:layout_width="match_parent"
+    android:layout_marginTop="-90dp"
+    android:layout_height="180dp"/>
+
+<androidx.cardview.widget.CardView
+    android:background="@color/black"
+    android:layout_gravity="center"
+
+    android:layout_marginTop="-70dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardElevation="10dp"
+    app:cardCornerRadius="20dp"
+
+    app:cardBackgroundColor="@color/white"
+    app:cardMaxElevation="12dp"
+    app:cardPreventCornerOverlap="true"
+    app:cardUseCompatPadding="true"
+    >
+    <TextView
+        android:layout_gravity="center_horizontal"
+        android:text="Pass Type "
+        android:textSize="16dp"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:padding="15dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:text="Pass Number: "
+            android:textSize="12dp"
+            android:layout_marginTop="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:text="Name: "
+            android:textSize="12dp"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:text="From: "
+            android:textSize="12dp"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:text="To: "
+            android:textSize="12dp"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:text="Issued Date: "
+            android:textSize="12dp"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:text="Expiry Date: "
+            android:textSize="12dp"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_marginLeft="260dp"
+        android:layout_marginTop="110dp"
+        android:src="@drawable/qr_code"
+        android:layout_width="80dp"
+        android:layout_height="80dp"/>
+</androidx.cardview.widget.CardView>
+
+
+
+</LinearLayout>

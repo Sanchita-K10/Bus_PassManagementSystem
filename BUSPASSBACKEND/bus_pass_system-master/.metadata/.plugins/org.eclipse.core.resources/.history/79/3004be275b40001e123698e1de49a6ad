@@ -1,0 +1,18 @@
+package com.example.repository;
+
+import com.example.model.FAQ;
+import com.example.model.Route;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import java.util.List;
+
+public interface RouteRepository extends JpaRepository<Route, Integer>
+{
+
+	List<Route> findAll();
+	
+	@Query(value="insert into route (route_name, status) values (:routename, 'Active')", nativeQuery=true)
+	void addroute();
+
+}

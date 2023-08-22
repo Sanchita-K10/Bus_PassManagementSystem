@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical"
+android:background="#C1F8F8"
+tools:context=".activities.RegisterActivity">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:background="#088F8F"
+        android:src="@drawable/ic_login_bk"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"/>
+</LinearLayout>
+
+<ImageView
+    android:src="@drawable/bus_login"
+    android:layout_width="match_parent"
+    android:layout_marginTop="-70dp"
+    android:layout_height="180dp"/>
+
+<androidx.cardview.widget.CardView
+    android:background="@color/black"
+    android:layout_gravity="center"
+
+    android:layout_marginTop="30dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardElevation="10dp"
+    app:cardCornerRadius="20dp"
+
+    app:cardBackgroundColor="@color/black"
+    app:cardMaxElevation="12dp"
+    app:cardPreventCornerOverlap="true"
+    app:cardUseCompatPadding="true"
+    >
+
+    <LinearLayout
+        android:padding="16dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/editFirstName"
+            android:hint="Enter First Name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <EditText
+            android:id="@+id/editLastName"
+            android:hint="Enter Last Name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <EditText
+            android:layout_marginTop="4dp"
+            android:id="@+id/editMobileNo"
+            android:hint="Enter Mobile No"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <EditText
+            android:layout_marginTop="4dp"
+            android:id="@+id/editEmail"
+            android:hint="Enter Email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <EditText
+            android:layout_marginTop="4dp"
+            android:id="@+id/editPassword"
+            android:hint="Enter Password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+
+        <EditText
+            android:layout_marginTop="4dp"
+            android:id="@+id/editConfirmPassword"
+            android:hint="Enter Confirm Password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+
+
+        <Button
+            android:onClick="signupBtn"
+            android:text="Sign Up"
+            android:padding="4dp"
+            android:backgroundTint="@color/colorPrimary"
+            android:layout_marginTop="4dp"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
+
+</LinearLayout>

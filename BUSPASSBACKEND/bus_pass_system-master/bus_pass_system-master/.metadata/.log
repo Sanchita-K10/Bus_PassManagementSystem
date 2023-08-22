@@ -1,0 +1,91 @@
+!SESSION 2023-07-20 22:36:38.754 -----------------------------------------------
+eclipse.buildId=3.9.18.202109140905-RELEASE-e421
+java.version=17.0.7
+java.vendor=Private Build
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_IN
+Framework arguments:  -product org.springsource.sts.ide
+Command-line arguments:  -os linux -ws gtk -arch x86_64 -product org.springsource.sts.ide
+
+!ENTRY org.eclipse.jface 2 0 2023-07-20 22:36:54.865
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2023-07-20 22:36:54.865
+!MESSAGE A conflict occurred for CTRL+SHIFT+T:
+Binding(CTRL+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.navigate.open.type,Open Type,
+		Open a type in a Java editor,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@72e4ffa2,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(CTRL+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.lsp4e.symbolinworkspace,Go to Symbol in Workspace,
+		,
+		Category(org.eclipse.lsp4e.category,Language Servers,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@34dda1b4,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+
+!ENTRY org.eclipse.ui 2 2 2023-07-20 22:36:55.409
+!MESSAGE org.eclipse.jdt.junit.ResultView: Deprecated relationship "fast" should be converted to "stack".
+
+!ENTRY org.eclipse.ui 2 2 2023-07-20 22:36:55.410
+!MESSAGE org.springframework.ide.eclipse.aop.ui.navigator.aopReferenceModelNavigator: Deprecated relationship "fast" should be converted to "stack".
+
+!ENTRY org.eclipse.ui 2 2 2023-07-20 22:36:55.410
+!MESSAGE org.eclipse.contribution.xref.ui.views.XReferenceView: Deprecated relationship "fast" should be converted to "stack".
+
+!ENTRY com.vwmare.vfabric.ide.eclipse.tcserver.core 4 0 2023-07-20 22:36:59.590
+!MESSAGE Error creating server instance with command:
+ "/home/sanchita/Downloads/spring-tool-suite-3.9.18.RELEASE-e4.21.0-linux-gtk-x86_64/sts-bundle/pivotal-tc-server/developer-4.1.0.RELEASE/tcserver create base-instance -t base --force -v 9.0.33.A.RELEASE". Check access permission for the directory /home/sanchita/Downloads/spring-tool-suite-3.9.18.RELEASE-e4.21.0-linux-gtk-x86_64/sts-bundle/pivotal-tc-server/developer-4.1.0.RELEASE and its files and subdirectories.
+!SUBENTRY 1 com.vwmare.vfabric.ide.eclipse.tcserver.core 4 0 2023-07-20 22:36:59.590
+!MESSAGE The instance creation command failed and returned code 1
+!SUBENTRY 1 com.vwmare.vfabric.ide.eclipse.tcserver.core 4 0 2023-07-20 22:36:59.591
+!MESSAGE Output of the instance creation command:
+'create' command failed. An unexpected error occurred while attempting to validate tc Runtime Version 9.0.33.A.RELEASE: repo.pivotal.io
+
+
+!ENTRY org.eclipse.egit.ui 4 0 2023-07-20 22:50:41.288
+!MESSAGE file:///home/sanchita/gitbus: not found.
+!STACK 0
+org.eclipse.jgit.api.errors.TransportException: file:///home/sanchita/gitbus: not found.
+	at org.eclipse.jgit.api.LsRemoteCommand.execute(LsRemoteCommand.java:189)
+	at org.eclipse.jgit.api.LsRemoteCommand.call(LsRemoteCommand.java:128)
+	at org.eclipse.egit.core.op.ListRemoteOperation.run(ListRemoteOperation.java:116)
+	at org.eclipse.egit.ui.internal.clone.SourceBranchPage$9.run(SourceBranchPage.java:377)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:122)
+Caused by: org.eclipse.jgit.errors.NoRemoteRepositoryException: file:///home/sanchita/gitbus: not found.
+	at org.eclipse.jgit.transport.TransportLocal$1.open(TransportLocal.java:115)
+	at org.eclipse.jgit.transport.TransportBundleFile$1.open(TransportBundleFile.java:84)
+	at org.eclipse.jgit.transport.Transport.open(Transport.java:552)
+	at org.eclipse.jgit.api.LsRemoteCommand.execute(LsRemoteCommand.java:156)
+	... 4 more
+!SESSION 2023-07-20 22:51:27.231 -----------------------------------------------
+eclipse.buildId=3.9.18.202109140905-RELEASE-e421
+java.version=17.0.7
+java.vendor=Private Build
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_IN
+Framework arguments:  -product org.springsource.sts.ide
+Command-line arguments:  -data /home/sanchita/BUS_PASS_SYSTEM_V_0.0.2_Routes/bus_pass_system-master -os linux -ws gtk -arch x86_64 -product org.springsource.sts.ide
+
+!ENTRY org.eclipse.jface 2 0 2023-07-20 22:51:31.123
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2023-07-20 22:51:31.123
+!MESSAGE A conflict occurred for CTRL+SHIFT+T:
+Binding(CTRL+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.navigate.open.type,Open Type,
+		Open a type in a Java editor,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@e280006,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(CTRL+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.lsp4e.symbolinworkspace,Go to Symbol in Workspace,
+		,
+		Category(org.eclipse.lsp4e.category,Language Servers,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@54e3cba2,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)

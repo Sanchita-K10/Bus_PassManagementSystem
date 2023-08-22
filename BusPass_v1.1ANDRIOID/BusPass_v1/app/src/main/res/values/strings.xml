@@ -1,0 +1,38 @@
+<resources>
+    <string name="app_name">BusPass</string>
+    <string name="register">REGISTER</string>
+    <string name="login_email_hint">Email</string>
+    <string name="login_password_hint">Password</string>
+    <string name="signup_login_hint">Already have an account? Sign In</string>
+    <string name="login_signup_hint">Don\'t have an account? Sign Up</string>
+
+    <string name="about_us_1">
+
+   Welcome to our Bus Pass Management System!
+
+We are a team of dedicated professionals who understand the importance of efficient and reliable public transportation. Our system is designed to make it easy for individuals to purchase and manage their city bus passes online.
+
+  With our user-friendly platform, you can purchase a daily, weekly, or monthly pass with just a few clicks. You can also view your current pass information, update your personal information, and check the status of your pass at any time.
+
+</string>
+
+    <string name="about_us_2">
+        We understand the importance of security and privacy, and we take great care to ensure that all of your personal information is kept safe and secure. Our system also features advanced fraud detection and prevention measures to ensure that your transaction is safe and secure.
+
+    We are committed to providing our customers with the best possible experience. Our customer support team is always available to assist you with any questions or issues you may have.
+    </string>
+    <string name="about_us_3">
+       Thank you for choosing our Bus Pass Management System. We look forward to helping you ride with ease!
+</string>
+    <string name="faq_1">Q: How do I purchase a bus pass?
+   A: You can purchase a bus pass on our website by creating an account and selecting the type of pass you would like to purchase (daily, weekly, or monthly). You can also purchase a pass through our mobile app.
+</string>
+    <string name="faq_2">Q: How do I view my current bus pass information?
+  A: You can view your current bus pass information by logging into your account and going to the "Pass Information" section. Here you can view details such as the type of pass you have, the expiration date, and the number of rides remaining.
+  </string>
+    <string name="faq_3">Q: How can I contact customer support?
+    A: You can contact our customer support team by emailing us at support@buspassmanagementsystem.com, or by calling us at 555-555-5555 during business hours.
+   </string>
+
+
+</resources>

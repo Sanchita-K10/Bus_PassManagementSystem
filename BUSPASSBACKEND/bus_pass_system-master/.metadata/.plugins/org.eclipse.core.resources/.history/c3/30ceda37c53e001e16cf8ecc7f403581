@@ -1,0 +1,131 @@
+package com.example;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Optional;
+
+import com.example.model.LoginDTO;
+import com.example.model.User;
+import com.example.repository.UserRepository;
+import com.example.service.UserService;
+import com.example.utils.FileUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
+
+@RestController
+@RequestMapping("/service")
+@CrossOrigin(origins = "http://localhost:3000")
+public class LoginController
+{
+	@Autowired
+	UserService service;
+	
+	@Autowired
+	UserRepository repo;
+
+
+	@PostMapping("/login")
+	public ResponseEntity login(@RequestBody LoginDTO loginDTO)
+	{
+		Optional<User> validUser = service.isvalid(loginDTO.getEmail(),loginDTO.getPassword());
+		
+		if(validUser.isPresent())
+		{
+				return new ResponseEntity<>(validUser.get(), HttpStatus.OK);
+		}
+		return new ResponseEntity<>("Invalid user", HttpStatus.BAD_REQUEST);
+	}
+
+
+	@PostMapping("/register")
+	public ResponseEntity registration(@RequestBody User user){
+		Optional<User> existing = service.isvalid(user.getEmail(),user.getPassword());
+
+
+		if (existing.isPresent()) {
+			return new ResponseEntity<>("User already exist", HttpStatus.BAD_REQUEST);
+
+		}
+		service.saveUser(user);
+		return new ResponseEntity<>("Registered Successfully", HttpStatus.OK);
+	}
+
+	@PostMapping("/uploadFile/{userId}")
+	public ResponseEntity<FileUploadResponse> uploadFile(
+			@RequestParam("file") MultipartFile multipartFile,@PathVariable("userId") Integer userId)
+			throws IOException {
+		System.out.print("upload done");
+		String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+		long size = multipartFile.getSize();
+		
+		String filecode = FileUtil.saveFile(fileName, multipartFile);
+
+		FileUploadResponse response = new FileUploadResponse();
+		response.setFileName(fileName);
+		response.setSize(size);
+		response.setDownloadUri("/downloadFile/" + filecode);
+
+		return new ResponseEntity<>(response, HttpStatus.OK);
+	}
+
+	@GetMapping("/downloadFile/{fileCode}")
+	public ResponseEntity<?> downloadFile(@PathVariable("fileCode") String fileCode) {
+		FileUtil downloadUtil = new FileUtil();
+
+		Resource resource = null;
+		try {
+			resource = downloadUtil.getFileAsResource(fileCode);
+		} catch (IOException e) {
+			return ResponseEntity.internalServerError().build();
+		}
+
+		if (resource == null) {
+			return new ResponseEntity<>("File not found", HttpStatus.NOT_FOUND);
+		}
+
+		String contentType = "application/octet-stream";
+		String headerValue = "attachment; filename=\"" + resource.getFilename() + "\"";
+
+		return ResponseEntity.ok()
+				.contentType(MediaType.parseMediaType(contentType))
+				.header(HttpHeaders.CONTENT_DISPOSITION, headerValue)
+				.body(resource);
+	}
+
+
+	@GetMapping("/users")
+	public ResponseEntity getAllUsers(){
+
+		List<User> users = service.getAllUsersByRole("USER");
+		if(users.isEmpty())
+			return new ResponseEntity<>("No Users", HttpStatus.BAD_REQUEST);
+	else
+
+		return new ResponseEntity<>(users, HttpStatus.OK);
+
+
+	}
+
+	@GetMapping("/admin")
+	public ResponseEntity getAllAdmin(){
+
+		List<User> users = service.getAllUsersByRole("ADMIN");
+		if(users.isEmpty())
+			return new ResponseEntity<>("No Admin user available", HttpStatus.BAD_REQUEST);
+		else
+
+			return new ResponseEntity<>(users, HttpStatus.OK);
+
+	}
+
+}
